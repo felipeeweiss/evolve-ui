@@ -1,17 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useRef, useState } from 'react';
-import {
-  Platform,
-  Pressable,
-  Text,
-  TextInput,
-  View,
-  type NativeSyntheticEvent,
-  type TextInputKeyPressEventData,
-  type StyleProp,
-  type TextStyle,
-  type TextInputProps,
-  type ViewStyle,
+import { Platform, Pressable, Text, TextInput, View } from 'react-native';
+import type {
+  NativeSyntheticEvent,
+  StyleProp,
+  TextInputKeyPressEventData,
+  TextInputProps,
+  TextStyle,
+  ViewStyle,
 } from 'react-native';
 import { useEvolveUI } from '../theme/EvolveUIProvider';
 

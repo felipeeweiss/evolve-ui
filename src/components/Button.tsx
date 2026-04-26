@@ -1,11 +1,10 @@
 import React, { useMemo, type ReactNode } from 'react';
-import {
-  Pressable,
-  Text,
-  type PressableStateCallbackType,
-  type StyleProp,
-  type TextStyle,
-  type ViewStyle,
+import { Pressable, Text } from 'react-native';
+import type {
+  PressableStateCallbackType,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
 } from 'react-native';
 import { useEvolveUI } from '../theme/EvolveUIProvider';
 
