@@ -9,6 +9,10 @@ export type EvolveUIConfig = {
     body: string;
     background: string;
     surface: string;
+    /** Default border for text fields. */
+    inputBorder: string;
+    /** Invalid field border and error message. */
+    error: string;
   };
 };
 
@@ -23,6 +27,8 @@ export const defaultEvolveUIConfig: EvolveUIConfig = {
     body: '#4B5563',
     background: '#FFFFFF',
     surface: '#F9FAFB',
+    inputBorder: '#D1D5DB',
+    error: '#DC2626',
   },
 };
 
