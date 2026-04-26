@@ -71,20 +71,6 @@ import { EvolveUIProvider, Input } from '@felipeeweiss/evolve-ui';
 </EvolveUIProvider>
 ```
 
-## Local development of this library
-
-To test changes before publishing, point the app to this package with a `file:` dependency in the app’s `package.json`:
-
-```json
-{
-  "dependencies": {
-    "@felipeeweiss/evolve-ui": "file:../path/to/evolve-ui"
-  }
-}
-```
-
-Then run `npm install` in the app. Before publishing the library, run `npm run build` in the package root to generate declaration files in `dist/`.
-
 ## License
 
 MIT
