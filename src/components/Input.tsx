@@ -274,10 +274,6 @@ function CodeInputField({
     }
     if (index > firstEmptyIndex) {
       requestAnimationFrame(() => refs.current[firstEmptyIndex]?.focus());
-      return;
-    }
-    if (index < clean.length) {
-      requestAnimationFrame(() => refs.current[firstEmptyIndex]?.focus());
     }
   };
 
