@@ -48,7 +48,7 @@ export default function App() {
 }
 ```
 
-3. The theme may include `colors.inputBorder` and `colors.error` (defaults are provided) for `Input` borders and error text.
+3. The theme may include `colors.inputBorder` and `colors.error` (defaults are provided) for `Input` borders and error text, and `colors.toastBackground` plus `colors.toastIcon*` for the `Toast` card and icons.
 
 4. Components read colors via `useEvolveUI()`. Where supported, override layout and typography with `style` and `textStyle` (for example on `Button` and `inputStyle` on `Input`).
 
@@ -69,6 +69,25 @@ import { EvolveUIProvider, Input } from '@felipeeweiss/evolve-ui';
   <Input label="Password" variant="password" value={pw} onChangeText={setPw} />
   <Input label="Code" variant="code" value={code} onChangeText={setCode} codeLength={6} />
 </EvolveUIProvider>
+```
+
+## `Toast` component
+
+- Renders a full-width **modal** at the **top** of the screen, slides in from above, stays **3 seconds** (override with `duration` in ms), then slides out upward and calls `onDismiss`.
+- **Variants** (`success` | `error` | `info` | `warning`): same `colors.toastBackground` for the card; the **left** `Ionicons` glyph and `colors.toastIcon*` change per variant.
+- **Content**: `title` (up to 2 lines) and optional `description` (up to 2 lines) to the right of the icon.
+- After a timed dismiss, set your `visible` state to `false` inside `onDismiss` so the next open works.
+
+```tsx
+const [t, setT] = useState({ visible: false, variant: 'info' as const, title: 'Hi', text: '' });
+
+<Toast
+  visible={t.visible}
+  variant={t.variant}
+  title={t.title}
+  description={t.text}
+  onDismiss={() => setT((s) => ({ ...s, visible: false }))}
+/>
 ```
 
 ## License

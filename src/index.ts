@@ -2,6 +2,8 @@ export { Button } from './components/Button';
 export type { ButtonProps, ButtonVariant } from './components/Button';
 export { Input } from './components/Input';
 export type { InputProps, InputVariant } from './components/Input';
+export { Toast } from './components/Toast';
+export type { ToastProps, ToastVariant } from './components/Toast';
 export { EvolveUIProvider, useEvolveUI } from './theme/EvolveUIProvider';
 export type { EvolveUIProviderProps } from './theme/EvolveUIProvider';
 export { defaultEvolveUIConfig, mergeEvolveUIConfig } from './theme/config';

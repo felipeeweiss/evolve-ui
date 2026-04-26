@@ -10,6 +10,11 @@ export type EvolveUIConfig = {
     surface: string;
     inputBorder: string;
     error: string;
+    toastBackground: string;
+    toastIconSuccess: string;
+    toastIconError: string;
+    toastIconInfo: string;
+    toastIconWarning: string;
   };
 };
 
@@ -25,6 +30,11 @@ export const defaultEvolveUIConfig: EvolveUIConfig = {
     surface: '#F9FAFB',
     inputBorder: '#D1D5DB',
     error: '#DC2626',
+    toastBackground: '#FFFFFF',
+    toastIconSuccess: '#16A34A',
+    toastIconError: '#DC2626',
+    toastIconInfo: '#2563EB',
+    toastIconWarning: '#D97706',
   },
 };
 

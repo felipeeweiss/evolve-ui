@@ -12,6 +12,11 @@ const evolveConfig: EvolveUIConfigInput = {
     surface: '#F1F5F9',
     inputBorder: '#CBD5E1',
     error: '#DC2626',
+    toastBackground: '#FFFFFF',
+    toastIconSuccess: '#16A34A',
+    toastIconError: '#DC2626',
+    toastIconInfo: '#2563EB',
+    toastIconWarning: '#D97706',
   },
 };
 
