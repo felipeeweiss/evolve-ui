@@ -24,12 +24,9 @@ export type InputVariant =
   | 'code';
 
 type InputShared = {
-  /** Label above the field, left-aligned. */
   label: string;
-  /** When set, the field border uses `colors.error` and the message shows under the field. */
   error?: string;
   testID?: string;
-  /** Optional outer container style. */
   style?: StyleProp<ViewStyle>;
 };
 
@@ -38,7 +35,6 @@ type StandardInputProps = InputShared & {
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
-  /** @default true */
   editable?: boolean;
   inputStyle?: StyleProp<TextStyle>;
 };
@@ -47,7 +43,6 @@ type CodeInputProps = InputShared & {
   variant: 'code';
   value: string;
   onChangeText: (text: string) => void;
-  /** How many one-digit cells. @default 6 */
   codeLength?: number;
 };
 
@@ -275,7 +270,6 @@ function CodeInputField({
     }
   };
 
-  /** First empty slot index, or `codeLength` when full. */
   const firstEmptyIndex = clean.length < codeLength ? clean.length : codeLength;
 
   const onCellFocus = (index: number) => {
