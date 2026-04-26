@@ -254,7 +254,8 @@ function CodeInputField({
       if (index < clean.length) {
         const next = clean.substring(0, index) + clean.substring(index + 1);
         onChangeText(next);
-        if (index > 0) {
+        const hadDigitToTheRight = index < clean.length - 1;
+        if (!hadDigitToTheRight && index > 0) {
           requestAnimationFrame(() => refs.current[index - 1]?.focus());
         }
       }
@@ -271,6 +272,22 @@ function CodeInputField({
     const ch = index < clean.length ? clean[index]! : '';
     if (!ch && index > 0) {
       requestAnimationFrame(() => refs.current[index - 1]?.focus());
+    }
+  };
+
+  /** First empty slot index, or `codeLength` when full. */
+  const firstEmptyIndex = clean.length < codeLength ? clean.length : codeLength;
+
+  const onCellFocus = (index: number) => {
+    if (clean.length >= codeLength) {
+      return;
+    }
+    if (index > firstEmptyIndex) {
+      requestAnimationFrame(() => refs.current[firstEmptyIndex]?.focus());
+      return;
+    }
+    if (index < clean.length) {
+      requestAnimationFrame(() => refs.current[firstEmptyIndex]?.focus());
     }
   };
 
@@ -310,6 +327,7 @@ function CodeInputField({
                 value={ch}
                 onChangeText={(t) => onChange(i, t)}
                 onKeyPress={(e) => onKeyPress(i, e)}
+                onFocus={() => onCellFocus(i)}
                 testID={testID ? `${testID}-code-${i}` : undefined}
                 keyboardType="number-pad"
                 textContentType={i === 0 && Platform.OS === 'ios' ? 'oneTimeCode' : 'none'}
