@@ -12,6 +12,7 @@ import { useEvolveUI } from '../theme/EvolveUIProvider';
 export type ButtonVariant = 'primary' | 'secondary';
 
 export type ButtonProps = {
+  /** Uses primary or secondary colors from the Evolve UI theme. */
   variant?: ButtonVariant;
   children: ReactNode;
   onPress: () => void;
@@ -20,6 +21,7 @@ export type ButtonProps = {
   disabled?: boolean;
 };
 
+/** Pressable button with primary/secondary variants; `style` and `textStyle` override the defaults. */
 export function Button({
   variant = 'primary',
   children,

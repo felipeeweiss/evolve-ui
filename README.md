@@ -1,21 +1,21 @@
 # Evolve UI
 
-Biblioteca de componentes para React Native com tema centralizado via `evolve.config`.
+React Native component library with a central theme file: `evolve.config`.
 
-## Requisitos
+## Requirements
 
-- Node.js com npm, pnpm ou yarn
-- Projeto **React Native** com **React 18+** e **React Native 0.72+** (peer dependencies)
+- Node.js with npm, pnpm, or yarn
+- A **React Native** app with **React 18+** and **React Native 0.72+** (peer dependencies)
 
-## Instalação
+## Installation
 
-No diretório do seu app:
+In your app directory:
 
 ```bash
 npm install @felipeeweiss/evolve-ui
 ```
 
-Com yarn ou pnpm:
+With Yarn or pnpm:
 
 ```bash
 yarn add @felipeeweiss/evolve-ui
@@ -25,13 +25,13 @@ yarn add @felipeeweiss/evolve-ui
 pnpm add @felipeeweiss/evolve-ui
 ```
 
-O pacote não instala `react` nem `react-native` por conta própria; eles devem já existir no seu projeto.
+`react` and `react-native` are peer dependencies: they are not installed by this package and must already be present in your app.
 
-## Configuração do tema
+## Theme setup
 
-1. Crie um arquivo **`evolve.config.ts`** (ou `.js`) na raiz do app — pode copiar e adaptar o modelo `evolve.config.example.ts` que vem no pacote.
+1. Add **`evolve.config.ts`** (or `.js`) at your app root. You can start from the bundled `evolve.config.example.ts` in this package and adjust values.
 
-2. Envolva a árvore da aplicação com **`EvolveUIProvider`** e passe o objeto de configuração:
+2. Wrap your app with **`EvolveUIProvider`** and pass the config object:
 
 ```tsx
 import { EvolveUIProvider, Button } from '@felipeeweiss/evolve-ui';
@@ -41,29 +41,29 @@ export default function App() {
   return (
     <EvolveUIProvider config={evolveConfig}>
       <Button variant="primary" onPress={() => {}}>
-        Salvar
+        Save
       </Button>
     </EvolveUIProvider>
   );
 }
 ```
 
-3. Os componentes usam `useEvolveUI()` para ler as cores; você pode sobrescrever estilos com as props `style` e `textStyle` onde forem expostas (por exemplo no `Button`).
+3. Components read colors via `useEvolveUI()`. Where supported, override layout and typography with `style` and `textStyle` (for example on `Button`).
 
-## Desenvolvimento local desta biblioteca
+## Local development of this library
 
-Para testar alterações sem publicar no npm, use dependência por caminho no `package.json` do app:
+To test changes before publishing, point the app to this package with a `file:` dependency in the app’s `package.json`:
 
 ```json
 {
   "dependencies": {
-    "@felipeeweiss/evolve-ui": "file:../caminho/para/evolve-ui"
+    "@felipeeweiss/evolve-ui": "file:../path/to/evolve-ui"
   }
 }
 ```
 
-Depois rode `npm install` no app. Antes de publicar, na pasta da lib execute `npm run build` para gerar os arquivos de tipos em `dist/`.
+Then run `npm install` in the app. Before publishing the library, run `npm run build` in the package root to generate declaration files in `dist/`.
 
-## Licença
+## License
 
 MIT
