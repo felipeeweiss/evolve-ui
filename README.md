@@ -9,20 +9,20 @@ React Native component library with a central theme file: `evolve.config`.
 
 ## Installation
 
-In your app directory:
+In your app directory, install the library and `@expo/vector-icons` (used for `Input` icons):
 
 ```bash
-npm install @felipeeweiss/evolve-ui
+npm install @felipeeweiss/evolve-ui @expo/vector-icons
 ```
 
 With Yarn or pnpm:
 
 ```bash
-yarn add @felipeeweiss/evolve-ui
+yarn add @felipeeweiss/evolve-ui @expo/vector-icons
 ```
 
 ```bash
-pnpm add @felipeeweiss/evolve-ui
+pnpm add @felipeeweiss/evolve-ui @expo/vector-icons
 ```
 
 `react` and `react-native` are peer dependencies: they are not installed by this package and must already be present in your app.
@@ -48,7 +48,28 @@ export default function App() {
 }
 ```
 
-3. Components read colors via `useEvolveUI()`. Where supported, override layout and typography with `style` and `textStyle` (for example on `Button`).
+3. The theme may include `colors.inputBorder` and `colors.error` (defaults are provided) for `Input` borders and error text.
+
+4. Components read colors via `useEvolveUI()`. Where supported, override layout and typography with `style` and `textStyle` (for example on `Button` and `inputStyle` on `Input`).
+
+## `Input` component
+
+- **Layout**: label on top (left-aligned), field below, and optional `error` string under the field. When `error` is set, the border uses the theme’s `error` color.
+- **Variants**: `general` (default), `email`, `password`, `username`, `number`, and `code`.
+- **General**: a single `TextInput` with no leading icon.
+- **Email, password, username, number**: a leading `Ionicons` glyph and a keyboard type suited to the variant (`email-address`, `numeric`, etc.).
+- **Password**: `secureTextEntry` with a right-side control to show or hide the value.
+- **Code**: a row of one-digit cells (default length `6` via `codeLength`). Digits are controlled through `value` / `onChangeText` as a single string. On backspace in an empty cell, focus moves to the previous field.
+
+```tsx
+import { EvolveUIProvider, Input } from '@felipeeweiss/evolve-ui';
+
+<EvolveUIProvider config={evolveConfig}>
+  <Input label="Email" variant="email" value={email} onChangeText={setEmail} error={emailError} />
+  <Input label="Password" variant="password" value={pw} onChangeText={setPw} />
+  <Input label="Code" variant="code" value={code} onChangeText={setCode} codeLength={6} />
+</EvolveUIProvider>
+```
 
 ## Local development of this library
 

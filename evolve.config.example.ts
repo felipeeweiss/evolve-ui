@@ -18,6 +18,8 @@ const evolveConfig: EvolveUIConfigInput = {
     body: '#475569',
     background: '#FFFFFF',
     surface: '#F1F5F9',
+    inputBorder: '#CBD5E1',
+    error: '#DC2626',
   },
 };
 
