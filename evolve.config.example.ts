@@ -1,6 +1,6 @@
 /**
  * Copie para a raiz do app como `evolve.config.ts` (ou .js) e use
- * `import type { EvolveUIConfigInput } from 'evolve-ui'`.
+ * `import type { EvolveUIConfigInput } from '@felipeeweiss/evolve-ui'`.
  * No `App.tsx`:
  *
  *   import evolveConfig from './evolve.config';
