@@ -4,15 +4,7 @@ React Native component library with a central theme file: `evolve.config`.
 
 ## Preview
 
-### Components
-
-![Evolve UI components](docs/readme-media/example-components.png)
-
-### Toast
-
-<video src="docs/readme-media/example-toast.mov" controls playsinline width="360">Your browser does not support the video tag.</video>
-
-[Open toast video (example-toast.mov)](docs/readme-media/example-toast.mov)
+<img src="docs/readme-media/example-components.png" alt="Evolve UI components" width="406" />
 
 ## Requirements
 
