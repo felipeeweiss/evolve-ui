@@ -2,6 +2,9 @@
 
 React Native component library with a central theme file: `evolve.config`.
 
+![NPM Downloads (custom)](https://img.shields.io/npm/dw/%40felipeeweiss/evolve-ui?style=flat-square&color=blue)
+![NPM Downloads (total)](https://img.shields.io/npm/dt/%40felipeeweiss/evolve-ui?style=flat-square&color=green)
+
 ## Preview
 
 <img src="docs/readme-media/example-components.png" alt="Evolve UI components" width="406" />
