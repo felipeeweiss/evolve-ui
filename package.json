@@ -1,6 +1,6 @@
 {
   "name": "@felipeeweiss/evolve-ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Evolve UI — React Native components with theme (evolve.config)",
   "license": "MIT",
   "main": "src/index.ts",
@@ -14,7 +14,7 @@
     "evolve.config.example.ts"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node ./node_modules/typescript/lib/tsc.js -p tsconfig.build.json",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
