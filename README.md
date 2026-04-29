@@ -16,7 +16,7 @@ React Native component library with a central theme file: `evolve.config`.
 
 ## Installation
 
-In your app directory, install the library and `@expo/vector-icons` (used for `Input` icons):
+In your app directory, install the library and `@expo/vector-icons` (used for icons on `Input` and `Select`):
 
 ```bash
 npm install @felipeeweiss/evolve-ui @expo/vector-icons
@@ -55,7 +55,7 @@ export default function App() {
 }
 ```
 
-3. The theme may include `colors.inputBorder` and `colors.error` (defaults are provided) for `Input` borders and error text, and `colors.toastBackground` plus `colors.toastIcon*` for the `Toast` card and icons.
+3. The theme may include `colors.inputBorder` and `colors.error` (defaults are provided) for field borders and error text on `Input`, `Select`, `Checkbox`, and `RadioGroup`; `colors.surface`, `colors.title`, `colors.body`, and `colors.primary` for surfaces and accents; and `colors.toastBackground` plus `colors.toastIcon*` for the `Toast` card and icons.
 
 4. Components read colors via `useEvolveUI()`. Where supported, override layout and typography with `style` and `textStyle` (for example on `Button` and `inputStyle` on `Input`).
 
@@ -75,6 +75,78 @@ import { EvolveUIProvider, Input } from '@felipeeweiss/evolve-ui';
   <Input label="Email" variant="email" value={email} onChangeText={setEmail} error={emailError} />
   <Input label="Password" variant="password" value={pw} onChangeText={setPw} />
   <Input label="Code" variant="code" value={code} onChangeText={setCode} codeLength={6} />
+</EvolveUIProvider>
+```
+
+## `Select` component
+
+- **Controlled**: `value` (`string | null`) and `onValueChange`.
+- **Options**: `options` is an array of `{ label, value, disabled? }`.
+- **Layout**: label on top, trigger row styled like `Input` (`surface` background, `inputBorder`), placeholder text uses `body`, selected value uses `title`.
+- **Picker**: tapping opens a centered modal listing options; the active row shows a check icon in `primary`.
+
+```tsx
+import { EvolveUIProvider, Select } from '@felipeeweiss/evolve-ui';
+
+const countryOptions = [
+  { label: 'Brazil', value: 'br' },
+  { label: 'Portugal', value: 'pt' },
+];
+
+<EvolveUIProvider config={evolveConfig}>
+  <Select
+    label="Country"
+    placeholder="Choose a country"
+    value={country}
+    onValueChange={setCountry}
+    options={countryOptions}
+    error={countryError}
+  />
+</EvolveUIProvider>
+```
+
+## `Checkbox` component
+
+- **Controlled**: `checked` and `onChange(boolean)`.
+- **Layout**: optional `description` under the label; optional `error` below the row (border uses `error` when set).
+- **States**: disabled lowers opacity; checked state fills the box with `primary` and a simple check mark in `primaryText`.
+
+```tsx
+import { EvolveUIProvider, Checkbox } from '@felipeeweiss/evolve-ui';
+
+<EvolveUIProvider config={evolveConfig}>
+  <Checkbox
+    label="Accept terms"
+    description="You must accept to continue."
+    checked={accepted}
+    onChange={setAccepted}
+    error={acceptedError}
+  />
+</EvolveUIProvider>
+```
+
+## `RadioGroup` component
+
+- **Controlled**: `value` (`string | null`) and `onValueChange`.
+- **Options**: `options` is an array of `{ label, value, description?, disabled? }`.
+- **Layout**: optional group `label`; options are stacked in one bordered container (`surface`, separators with `inputBorder`); selected row shows the inner dot in `primary`.
+
+```tsx
+import { EvolveUIProvider, RadioGroup } from '@felipeeweiss/evolve-ui';
+
+const planOptions = [
+  { label: 'Free', value: 'free' },
+  { label: 'Pro', value: 'pro', description: 'Best for teams' },
+];
+
+<EvolveUIProvider config={evolveConfig}>
+  <RadioGroup
+    label="Plan"
+    value={plan}
+    onValueChange={setPlan}
+    options={planOptions}
+    error={planError}
+  />
 </EvolveUIProvider>
 ```
 
