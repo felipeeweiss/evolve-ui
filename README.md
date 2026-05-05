@@ -55,7 +55,7 @@ export default function App() {
 }
 ```
 
-3. The theme may include `colors.inputBorder` and `colors.error` (defaults are provided) for field borders and error text on `Input`, `Select`, `Checkbox`, and `RadioGroup`; `colors.surface`, `colors.title`, `colors.body`, and `colors.primary` for surfaces and accents; and `colors.toastBackground` plus `colors.toastIcon*` for the `Toast` card and icons.
+3. The theme may include `colors.inputBorder` and `colors.error` (defaults are provided) for field borders and error text on `Input`, `Select`, `Checkbox`, and `RadioGroup`; `colors.surface`, `colors.title`, `colors.body`, and `colors.primary` for surfaces and accents; `colors.progressBarTrack` and `colors.progressBarFill` for `ProgressBar`; and `colors.toastBackground` plus `colors.toastIcon*` for the `Toast` card and icons.
 
 4. Components read colors via `useEvolveUI()`. Where supported, override layout and typography with `style` and `textStyle` (for example on `Button` and `inputStyle` on `Input`).
 
@@ -147,6 +147,22 @@ const planOptions = [
     options={planOptions}
     error={planError}
   />
+</EvolveUIProvider>
+```
+
+## `ProgressBar` component
+
+- **Progress**: `progress` is a number **from 0 to 1**; values outside that range are **clamped**.
+- **Shape**: thin horizontal pill (`borderRadius = height / 2`), flat track and fill (no border or shadow).
+- **Colors**: track uses `colors.progressBarTrack`, filled portion uses `colors.progressBarFill`.
+- **`height`**: optional thickness in dp (default **8**). **`style`**: pass **`width`** or margins on the outer wrapper as needed.
+
+```tsx
+import { EvolveUIProvider, ProgressBar } from '@felipeeweiss/evolve-ui';
+
+<EvolveUIProvider config={evolveConfig}>
+  <ProgressBar progress={0.75} />
+  <ProgressBar progress={downloadPct / 100} height={6} style={{ marginTop: 12 }} />
 </EvolveUIProvider>
 ```
 
