@@ -15,6 +15,8 @@ export type EvolveUIConfig = {
     toastIconError: string;
     toastIconInfo: string;
     toastIconWarning: string;
+    progressBarTrack: string;
+    progressBarFill: string;
   };
 };
 
@@ -35,6 +37,8 @@ export const defaultEvolveUIConfig: EvolveUIConfig = {
     toastIconError: '#DC2626',
     toastIconInfo: '#2563EB',
     toastIconWarning: '#D97706',
+    progressBarTrack: '#71717A',
+    progressBarFill: '#FACC15',
   },
 };
 

@@ -10,6 +10,8 @@ export { Checkbox } from './components/Checkbox';
 export type { CheckboxProps } from './components/Checkbox';
 export { RadioGroup } from './components/RadioGroup';
 export type { RadioGroupProps, RadioOption } from './components/RadioGroup';
+export { ProgressBar } from './components/ProgressBar';
+export type { ProgressBarProps } from './components/ProgressBar';
 export { EvolveUIProvider, useEvolveUI } from './theme/EvolveUIProvider';
 export type { EvolveUIProviderProps } from './theme/EvolveUIProvider';
 export { defaultEvolveUIConfig, mergeEvolveUIConfig } from './theme/config';

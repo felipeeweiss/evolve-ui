@@ -17,6 +17,8 @@ const evolveConfig: EvolveUIConfigInput = {
     toastIconError: '#DC2626',
     toastIconInfo: '#2563EB',
     toastIconWarning: '#D97706',
+    progressBarTrack: '#71717A',
+    progressBarFill: '#FACC15',
   },
 };
 
