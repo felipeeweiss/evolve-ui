@@ -17,7 +17,8 @@ export type InputVariant =
   | 'password'
   | 'username'
   | 'number'
-  | 'code';
+  | 'code'
+  | 'textarea';
 
 type InputShared = {
   label: string;
@@ -26,13 +27,24 @@ type InputShared = {
   style?: StyleProp<ViewStyle>;
 };
 
-type StandardInputProps = InputShared & {
-  variant?: Exclude<InputVariant, 'code'>;
+type SingleLineInputProps = InputShared & {
+  variant?: Exclude<InputVariant, 'code' | 'textarea'>;
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
   editable?: boolean;
   inputStyle?: StyleProp<TextStyle>;
+};
+
+type TextareaInputProps = InputShared & {
+  variant: 'textarea';
+  value: string;
+  onChangeText: (text: string) => void;
+  placeholder?: string;
+  editable?: boolean;
+  inputStyle?: StyleProp<TextStyle>;
+  /** Hint for minimum height (line count). Default 5. */
+  numberOfLines?: number;
 };
 
 type CodeInputProps = InputShared & {
@@ -42,7 +54,7 @@ type CodeInputProps = InputShared & {
   codeLength?: number;
 };
 
-export type InputProps = StandardInputProps | CodeInputProps;
+export type InputProps = SingleLineInputProps | CodeInputProps | TextareaInputProps;
 
 const ICON = 20;
 
@@ -52,10 +64,15 @@ export function Input(props: InputProps) {
   if (props.variant === 'code') {
     return <CodeInputField {...props} />;
   }
+  if (props.variant === 'textarea') {
+    return <TextareaField {...props} />;
+  }
   return <SingleLineInput {...props} variant={props.variant ?? 'general'} />;
 }
 
-type SingleWithVariant = StandardInputProps & { variant: Exclude<InputVariant, 'code'> };
+type SingleWithVariant = SingleLineInputProps & {
+  variant: Exclude<InputVariant, 'code' | 'textarea'>;
+};
 
 function SingleLineInput({
   label,
@@ -188,7 +205,7 @@ function SingleLineInput({
 }
 
 function getLeftIconName(
-  variant: Exclude<InputVariant, 'code'>
+  variant: Exclude<InputVariant, 'code' | 'textarea'>
 ): IonName | null {
   switch (variant) {
     case 'email':
@@ -202,6 +219,75 @@ function getLeftIconName(
     default:
       return null;
   }
+}
+
+function TextareaField({
+  label,
+  value,
+  onChangeText,
+  placeholder,
+  editable = true,
+  error,
+  testID,
+  style,
+  inputStyle,
+  numberOfLines = 5,
+}: TextareaInputProps) {
+  const { colors } = useEvolveUI();
+  const hasError = Boolean(error && error.length > 0);
+  const borderColor = hasError ? colors.error : colors.inputBorder;
+  const lineApprox = 22;
+  const minHeight = Math.max(48, numberOfLines * lineApprox + 24);
+
+  return (
+    <View style={[{ width: '100%' }, style]} testID={testID}>
+      <Text
+        style={{
+          color: colors.title,
+          fontSize: 14,
+          fontWeight: '500',
+          marginBottom: 6,
+          alignSelf: 'flex-start',
+        }}
+      >
+        {label}
+      </Text>
+      <View
+        style={{
+          borderWidth: 1,
+          borderColor,
+          borderRadius: 8,
+          backgroundColor: colors.surface,
+        }}
+      >
+        <TextInput
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          editable={editable}
+          testID={testID ? `${testID}-input` : undefined}
+          placeholderTextColor={colors.body}
+          multiline
+          numberOfLines={numberOfLines}
+          textAlignVertical="top"
+          scrollEnabled
+          style={[
+            {
+              minHeight,
+              paddingVertical: 12,
+              paddingHorizontal: 12,
+              fontSize: 16,
+              color: colors.title,
+            },
+            inputStyle,
+          ]}
+        />
+      </View>
+      {hasError && (
+        <Text style={{ color: colors.error, fontSize: 12, marginTop: 4 }}>{error}</Text>
+      )}
+    </View>
+  );
 }
 
 function CodeInputField({
