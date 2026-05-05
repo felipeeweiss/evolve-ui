@@ -62,10 +62,11 @@ export default function App() {
 ## `Input` component
 
 - **Layout**: label on top (left-aligned), field below, and optional `error` string under the field. When `error` is set, the border uses the theme’s `error` color.
-- **Variants**: `general` (default), `email`, `password`, `username`, `number`, and `code`.
+- **Variants**: `general` (default), `email`, `password`, `username`, `number`, `textarea`, and `code`.
 - **General**: a single `TextInput` with no leading icon.
 - **Email, password, username, number**: a leading `Ionicons` glyph and a keyboard type suited to the variant (`email-address`, `numeric`, etc.).
 - **Password**: `secureTextEntry` with a right-side control to show or hide the value.
+- **Textarea**: multiline field with top-aligned text and the same border/surface style as the other input variants. Use `numberOfLines` (default `5`) as a minimum height hint.
 - **Code**: a row of one-digit cells (default length `6` via `codeLength`). Digits are controlled through `value` / `onChangeText` as a single string. On backspace in an empty cell, focus moves to the previous field.
 
 ```tsx
@@ -74,6 +75,7 @@ import { EvolveUIProvider, Input } from '@felipeeweiss/evolve-ui';
 <EvolveUIProvider config={evolveConfig}>
   <Input label="Email" variant="email" value={email} onChangeText={setEmail} error={emailError} />
   <Input label="Password" variant="password" value={pw} onChangeText={setPw} />
+  <Input label="Bio" variant="textarea" value={bio} onChangeText={setBio} numberOfLines={5} />
   <Input label="Code" variant="code" value={code} onChangeText={setCode} codeLength={6} />
 </EvolveUIProvider>
 ```
