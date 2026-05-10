@@ -187,6 +187,72 @@ const [t, setT] = useState({ visible: false, variant: 'info' as const, title: 'H
 />
 ```
 
+## `Switch` component
+
+- **Controlled**: `checked` and `onChange(boolean)`.
+- **Layout**: optional `label` and `description` on the left; an animated toggle track on the right.
+- **Animation**: the thumb slides smoothly between the off and on positions (180 ms). Track color transitions between `inputBorder` (off) and `primary` (on); the thumb is always `primaryText`.
+- **States**: disabled lowers opacity.
+
+```tsx
+import { EvolveUIProvider, Switch } from '@felipeeweiss/evolve-ui';
+
+<EvolveUIProvider config={evolveConfig}>
+  <Switch
+    label="Notifications"
+    description="Receive push alerts."
+    checked={notifs}
+    onChange={setNotifs}
+  />
+  <Switch
+    label="Dark mode"
+    checked={dark}
+    onChange={setDark}
+    disabled
+  />
+</EvolveUIProvider>
+```
+
+## `Badge` component
+
+- **Label**: short text rendered inside a full-radius pill.
+- **Variants** (`primary` | `secondary` | `success` | `error` | `warning` | `info`): `primary` and `secondary` use the matching theme palette; semantic variants (`success`, `error`, `warning`, `info`) reuse the `toastIcon*` colors as background with white text.
+- **Sizes** (`sm` | `md`): controls font size and padding. Default is `md`.
+- Aligns to `flex-start` by default; wrap in a `View` to control positioning.
+
+```tsx
+import { EvolveUIProvider, Badge } from '@felipeeweiss/evolve-ui';
+
+<EvolveUIProvider config={evolveConfig}>
+  <Badge label="New" variant="primary" />
+  <Badge label="Saved" variant="success" size="sm" />
+  <Badge label="Failed" variant="error" />
+  <Badge label="Beta" variant="secondary" />
+</EvolveUIProvider>
+```
+
+## `Avatar` component
+
+- **Image**: pass `source` as a URI object (`{ uri: '...' }`) or a `require()` asset. Falls back to initials on error or when omitted.
+- **Initials**: up to 2 characters from `initials`; background uses `primary`, text uses `primaryText`.
+- **Sizes** (`sm` | `md` | `lg`): 32 dp / 48 dp / 64 dp circles. Default is `md`.
+- Override the container with `style` (e.g. to add a border ring).
+
+```tsx
+import { EvolveUIProvider, Avatar } from '@felipeeweiss/evolve-ui';
+
+<EvolveUIProvider config={evolveConfig}>
+  <Avatar source={{ uri: 'https://example.com/photo.jpg' }} size="lg" />
+  <Avatar initials="FW" size="md" />
+  <Avatar
+    source={{ uri: user.photo }}
+    initials={user.name.slice(0, 2)}
+    size="sm"
+    style={{ borderWidth: 2, borderColor: '#0D9488' }}
+  />
+</EvolveUIProvider>
+```
+
 ## License
 
 MIT
